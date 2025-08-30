@@ -1,8 +1,8 @@
 # Sistema-Player-de-Midias
 
-# Projeto de Teste - Gestão de Mídias e Playlists
+## Projeto de Teste - Gestão de Mídias e Playlists
 
-## Descrição do Projeto
+### Descrição do Projeto
 Este projeto consiste em três frentes separadas, simulando um ambiente real de gerenciamento e exibição de mídias:
 
 1. **API .NET**: CRUD de mídias e playlists, gerenciando dados no PostgreSQL.  
@@ -11,18 +11,19 @@ Este projeto consiste em três frentes separadas, simulando um ambiente real de 
 
 ---
 
-## Estrutura de Pastas
+### Estrutura de Pastas
 
+```
 projeto-teste/
 │
-├── api-dotnet/ # Backend .NET + PostgreSQL
-├── admin-web-react/ # Frontend de administração
-└── player-web-react/ # Player web
-
+├── api-dotnet/          # Backend .NET + PostgreSQL
+├── admin-web-react/     # Frontend de administração
+└── player-web-react/    # Player web
+```
 
 ---
 
-## Tecnologias Utilizadas
+### Tecnologias Utilizadas
 
 **Backend (.NET)**
 - .NET 8, C#  
@@ -34,7 +35,7 @@ projeto-teste/
 - React + TypeScript  
 - Ant Design  
 - Axios  
-- Controle de estado: Luffie / Context API / Redux (conforme implementado)  
+- Controle de estado: Luffie / Context API / Redux  
 
 **Frontend Player**
 - React + TypeScript  
@@ -42,34 +43,52 @@ projeto-teste/
 
 ---
 
-## Instruções para Rodar Localmente
+### Instruções para Rodar Localmente
 
-### 1. API .NET
-1. Navegue até a pasta `api-dotnet`:
-   ```bash
-   cd api-dotnet
-   dotnet restore
-   dotnet ef database update
-   dotnet run
-   https://localhost:5001
+#### 1. API .NET
+```bash
+cd api-dotnet
+dotnet restore
+dotnet ef database update
+dotnet run
+```
 
-### 2. Admin Web (React)
-1. Navegue até a pasta `admin-web-react`:
-   ```bash
-   cd admin-web-react
-   npm install
-   npm start
-   http://localhost:3000
+#### 2. Admin Web (React)
+```bash
+cd admin-web-react
+npm install
+npm start
+```
 
-### 2. Player Web (React)
-1. Navegue até a pasta `player-web-react`:
-   ```bash
-   cd player-web-react
-   npm install
-   npm start
-   http://localhost:3001
+#### 3. Player Web (React)
+```bash
+cd player-web-react
+npm install
+npm start
+```
 
-## Fluxo do Sistema
+---
+
+### Fluxo do Sistema
+```
 [Admin Web] --- Axios ---> [API .NET + PostgreSQL] --- Axios ---> [Player Web]
+```
 
+---
+
+### Fases Concluídas
+- [x] CRUD de mídias (Fase 1)  
+- [x] Playlists e associação com mídias (Fase 2)  
+- [x] Player preview básico (Fase 3)  
+- [x] JWT e FadeIn implementados (Fase 4)  
+
+---
+
+### O Que Faria Com Mais Tempo
+- Implementar **WebSocket** ou polling para atualização em tempo real das playlists  
+- Melhorar a **responsividade avançada** do Admin e Player  
+- Criar **testes unitários e automatizados** no backend e frontend  
+- Melhorar **UI/UX** das aplicações (fluxo, cores, botões, feedback visual)  
+- Implementar upload de mídia com **barra de progresso e suporte a múltiplos formatos**  
+- Automatizar deploy com **Docker + CI/CD**  
 
