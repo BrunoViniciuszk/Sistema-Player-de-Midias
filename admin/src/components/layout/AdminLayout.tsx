@@ -18,12 +18,12 @@ const AdminLayout = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("midias");
 
-  const { logout, userName } = useAuth(); // 👈 pega do hook
+  const { logout, userName } = useAuth(); 
 
   const menuItems = [
     { key: "midias", icon: <VideoCameraOutlined />, label: "Mídias" },
     { key: "playlists", icon: <OrderedListOutlined />, label: "Playlists" },
-    { key: "logout", icon: <LogoutOutlined />, label: "Sair" }, // 👈 item logout
+    { key: "logout", icon: <LogoutOutlined />, label: "Sair" },
   ];
 
   const renderContent = () => {
