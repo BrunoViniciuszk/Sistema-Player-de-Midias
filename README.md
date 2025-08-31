@@ -89,6 +89,5 @@ npm start
 - Melhorar a **responsividade avançada** do Admin e Player  
 - Criar **testes unitários e automatizados** no backend e frontend  
 - Melhorar **UI/UX** das aplicações (fluxo, cores, botões, feedback visual)  
-- Implementar upload de mídia com **barra de progresso e suporte a múltiplos formatos**  
 - Automatizar deploy com **Docker + CI/CD**  
 
