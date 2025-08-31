@@ -26,16 +26,15 @@ projeto-teste/
 ### Tecnologias Utilizadas
 
 **Backend (.NET)**
-- .NET 8, C#  
+- .NET, C#  
 - Entity Framework Core  
 - PostgreSQL  
-- Swagger (para testes de endpoints)  
 
 **Frontend Admin**
 - React + TypeScript  
 - Ant Design  
 - Axios  
-- Controle de estado: Luffie / Context API / Redux  
+- Controle de estado: Luffie  
 
 **Frontend Player**
 - React + TypeScript  
