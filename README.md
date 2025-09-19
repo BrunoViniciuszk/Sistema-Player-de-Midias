@@ -26,16 +26,15 @@ projeto-teste/
 ### Tecnologias Utilizadas
 
 **Backend (.NET)**
-- .NET 8, C#  
+- .NET, C#  
 - Entity Framework Core  
 - PostgreSQL  
-- Swagger (para testes de endpoints)  
 
 **Frontend Admin**
 - React + TypeScript  
 - Ant Design  
 - Axios  
-- Controle de estado: Luffie / Context API / Redux  
+- Controle de estado: Luffie  
 
 **Frontend Player**
 - React + TypeScript  
@@ -89,6 +88,5 @@ npm start
 - Melhorar a **responsividade avançada** do Admin e Player  
 - Criar **testes unitários e automatizados** no backend e frontend  
 - Melhorar **UI/UX** das aplicações (fluxo, cores, botões, feedback visual)  
-- Implementar upload de mídia com **barra de progresso e suporte a múltiplos formatos**  
 - Automatizar deploy com **Docker + CI/CD**  
 
