@@ -6,10 +6,12 @@
 *.sln.docstates
 
 # Build
-bin/
-obj/
-out/
+api-dotnet/obj/
+api-dotnet/bin/
+api-dotnet/.vs/
 ApiDotnet.Tests/bin/
+ApiDotnet.Tests/obj/
+ApiDotnet.Tests/.vs/
 ApiDotnet.Tests/TestResults/
 
 # Logs
