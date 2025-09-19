@@ -47,16 +47,17 @@ namespace api_dotnet.Controllers
 
         [Authorize]
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromForm] string? nome, [FromForm] string? descricao, [FromForm] IFormFile? file)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Update(int id, [FromForm] UpdateMidiaDto dto)
         {
             try
             {
-                var updated = await _midiaService.UpdateAsync(id, nome, descricao, file);
-                return Ok(updated);
+                var midia = await _midiaService.UpdateAsync(id, dto);
+                return Ok(midia);
             }
-            catch (KeyNotFoundException)
+            catch (ArgumentException ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
         }
 
@@ -76,12 +77,13 @@ namespace api_dotnet.Controllers
         }
 
         [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> Upload([FromForm] IFormFile file, [FromForm] string nome, [FromForm] string descricao)
+        [HttpPost("upload")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Upload([FromForm] UploadMidiaDto dto)
         {
             try
             {
-                var midia = await _midiaService.UploadAndCreateMidiaAsync(file, nome, descricao);
+                var midia = await _midiaService.UploadAndCreateMidiaAsync(dto);
                 return CreatedAtAction(nameof(GetMidia), new { id = midia.Id }, midia);
             }
             catch (ArgumentException ex)

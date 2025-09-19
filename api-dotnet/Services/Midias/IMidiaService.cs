@@ -1,4 +1,5 @@
 ﻿using api_dotnet.Models;
+using api_dotnet.Models.Dtos;
 
 namespace api_dotnet.Services.Midias
 {
@@ -6,8 +7,8 @@ namespace api_dotnet.Services.Midias
     {
         Task<IEnumerable<Midia>> GetAllAsync();
         Task<Midia> GetByIdAsync(int id);
-        Task<Midia> UploadAndCreateMidiaAsync(IFormFile file, string nome, string descricao);
-        Task<Midia> UpdateAsync(int id, string? nome, string? descricao, IFormFile? file);
+        Task<Midia> UploadAndCreateMidiaAsync(UploadMidiaDto dto);
+        Task<Midia> UpdateAsync(int id, UpdateMidiaDto dto);
         Task DeleteAsync(int id);
     }
 }

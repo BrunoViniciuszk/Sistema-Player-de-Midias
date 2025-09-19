@@ -8,10 +8,4 @@
         public string UrlMidia { get; set; } = string.Empty;
         public bool ExibirNoPlayer { get; set; }
     }
-
-    public class CreateMidiaDto
-    {
-        public string Nome { get; set; }
-        public string Descricao { get; set; }
-    }
 }

@@ -15,12 +15,23 @@ const isVideo = (path: string) => {
   );
 };
 
+// Função utilitária para montar a URL completa de uma mídia
 export const getMidiaUrl = (path: string) => {
+  // Se o parâmetro "path" vier vazio ou nulo, retorna string vazia
   if (!path) return "";
+
+  // Pega a URL base da API definida no .env (ex: http://localhost:3000/api)
+  // e remove o "/api" do final, para formar a raiz (ex: http://localhost:3000)
   const base = process.env.REACT_APP_API_URL?.replace("/api", "");
+
+  // Monta a URL final:
+  // - Se "path" já começa com "/", só concatena (base + path)
+  // - Se não começa com "/", adiciona "/" antes para evitar erro
   return `${base}${path.startsWith("/") ? path : "/" + path}`;
 };
 
+// Declaração de um componente funcional React chamado "MidiaCard"
+// Ele recebe props tipadas pela interface "Props"
 const MidiaCard: React.FC<Props> = ({ midia, onEdit, onDelete }) => {
   return (
     <Card

@@ -1,0 +1,31 @@
+services:
+  api:
+    build:
+      context: .   
+      dockerfile: Dockerfile
+    container_name: api_dotnet
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=midia_db;Username=postgres;Password=postgres
+    volumes:
+      - ./Uploads:/app/Uploads 
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: midia_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

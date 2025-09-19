@@ -1,4 +1,5 @@
 ﻿using api_dotnet.Data;
+using api_dotnet.Factories.Interfaces;
 using api_dotnet.Models;
 using api_dotnet.Services.User;
 using Microsoft.AspNetCore.Identity;
@@ -10,33 +11,40 @@ namespace api_dotnet.Services.Auth
     {
         private readonly AppDbContext _context;
         private readonly IPasswordHasher<AppUser> _passwordHasher;
+        private readonly IAppUserFactory _userFactory;
 
-        public AppUserService(AppDbContext context, IPasswordHasher<AppUser> passwordHasher)
+        public AppUserService(
+            AppDbContext context,
+            IPasswordHasher<AppUser> passwordHasher,
+            IAppUserFactory userFactory)
         {
             _context = context;
             _passwordHasher = passwordHasher;
+            _userFactory = userFactory;
         }
 
-        public AppUser Authenticate(string username, string password)
+        public async Task<AppUser> Authenticate(string username, string password)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Username == username);
+            var user = await _context.Users
+                .SingleOrDefaultAsync(u => u.Username == username);
+
             if (user == null) return null;
 
             var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password);
             return result == PasswordVerificationResult.Success ? user : null;
         }
 
-        public AppUser GetByUsername(string username)
+        public async Task<AppUser> GetByUsername(string username)
         {
-            return _context.Users.FirstOrDefault(u => u.Username == username);
+            return await _context.Users
+                .SingleOrDefaultAsync(u => u.Username == username);
         }
 
-        public void Create(AppUser user, string password)
+        public async Task Create(string username, string password)
         {
-            user.PasswordHash = _passwordHasher.HashPassword(user, password);
+            var user = _userFactory.Create(username, password);
             _context.Users.Add(user);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
-
     }
 }

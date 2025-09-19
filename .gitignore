@@ -1,0 +1,34 @@
+# Visual Studio / Rider / IDE
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build
+bin/
+obj/
+out/
+ApiDotnet.Tests/bin/
+ApiDotnet.Tests/TestResults/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node / JS
+node_modules/
+
+# Uploads
+api-dotnet/Uploads/
+
+# Environment
+.env
+
+# macOS
+.DS_Store
+
+# Package locks
+*.lock.json
