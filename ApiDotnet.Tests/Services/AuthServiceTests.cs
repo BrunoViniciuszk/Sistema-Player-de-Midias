@@ -25,14 +25,14 @@ public class AuthServiceTests
     [Fact]
     public void GenerateJwtToken_WhenUserIsValid_ReturnsToken()
     {
-        // Arrange
+        
         var user = new AppUser { Id = 1, Username = "testuser" };
 
-        // Act
+        
         var token = _authService.GenerateJwtToken(user);
 
-        // Assert
+        
         Assert.False(string.IsNullOrEmpty(token));
-        Assert.Equal(3, token.Split('.').Length); // verifica que é um JWT válido
+        Assert.Equal(3, token.Split('.').Length); 
     }
 }
