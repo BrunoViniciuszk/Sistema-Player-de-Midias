@@ -14,7 +14,7 @@ public class AppUserServiceTests
 
     public AppUserServiceTests()
     {
-        // Cria banco de dados em memória isolado
+        
         var options = new DbContextOptionsBuilder<AppDbContext>()
             .UseInMemoryDatabase(databaseName: $"UserServiceTestsDb_{System.Guid.NewGuid()}")
             .Options;
