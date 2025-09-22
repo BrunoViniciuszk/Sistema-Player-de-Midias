@@ -16,7 +16,7 @@ public class MappingProfileTests
             cfg.AddProfile<MappingProfile>();
         });
 
-        config.AssertConfigurationIsValid(); // já valida todos os mapas
+        config.AssertConfigurationIsValid(); 
 
         _mapper = config.CreateMapper();
     }
@@ -24,7 +24,7 @@ public class MappingProfileTests
     [Fact]
     public void Playlist_To_PlaylistDto_MapsCorrectly()
     {
-        // Arrange
+        
         var playlist = new Playlist
         {
             Id = 1,
@@ -39,10 +39,10 @@ public class MappingProfileTests
             }
         };
 
-        // Act
+        
         var dto = _mapper.Map<PlaylistDto>(playlist);
 
-        // Assert
+        
         Assert.Equal(1, dto.Id);
         Assert.Equal("Favoritas", dto.Nome);
         Assert.Single(dto.Midias);
