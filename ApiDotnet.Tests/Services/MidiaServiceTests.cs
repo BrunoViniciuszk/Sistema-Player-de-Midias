@@ -25,34 +25,30 @@ public class MidiaServiceTests
         _service = new MidiaService(_midiaRepoMock.Object, _envMock.Object);
     }
 
-    // Helper para criar arquivo fake
+    
     private IFormFile CreateFakeFile(string fileName, string content = "dummy content")
     {
         var stream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(content));
         return new FormFile(stream, 0, stream.Length, "file", fileName);
     }
 
-    // -----------------------------
-    // GetAllAsync
-    // -----------------------------
+    
     [Fact]
     public async Task GetAllAsync_ReturnsMidias()
     {
-        // Arrange
+        
         var midias = new List<Midia> { new Midia { Id = 1, Nome = "Teste" } };
         _midiaRepoMock.Setup(r => r.GetAllAsync()).ReturnsAsync(midias);
 
-        // Act
+        
         var result = await _service.GetAllAsync();
 
-        // Assert
+        
         Assert.Single(result);
         Assert.Equal("Teste", ((List<Midia>)result)[0].Nome);
     }
 
-    // -----------------------------
-    // GetByIdAsync
-    // -----------------------------
+    
     [Fact]
     public async Task GetByIdAsync_WhenExists_ReturnsMidia()
     {
@@ -73,20 +69,18 @@ public class MidiaServiceTests
         await Assert.ThrowsAsync<KeyNotFoundException>(() => _service.GetByIdAsync(1));
     }
 
-    // -----------------------------
-    // UpdateAsync
-    // -----------------------------
+    
     [Fact]
     public async Task UpdateAsync_WhenExists_UpdatesFields()
     {
-        // Arrange
+        
         var midia = new Midia { Id = 1, Nome = "Antigo", Descricao = "Velha" };
         _midiaRepoMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(midia);
 
-        // Act
+        
         var result = await _service.UpdateAsync(1, "Novo", "Nova desc", null);
 
-        // Assert
+        
         Assert.Equal("Novo", result.Nome);
         Assert.Equal("Nova desc", result.Descricao);
         _midiaRepoMock.Verify(r => r.UpdateAsync(midia), Times.Once);
@@ -104,22 +98,20 @@ public class MidiaServiceTests
     [Fact]
     public async Task UpdateAsync_WhenFileProvided_UpdatesUrlMidia()
     {
-        // Arrange
+        
         var midia = new Midia { Id = 1, Nome = "Teste", Descricao = "Desc" };
         _midiaRepoMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(midia);
         var file = CreateFakeFile("teste.jpg");
 
-        // Act
+        
         var result = await _service.UpdateAsync(1, null, null, file);
 
-        // Assert
+        
         Assert.Contains("/Uploads/Imagens/", result.UrlMidia);
         _midiaRepoMock.Verify(r => r.UpdateAsync(midia), Times.Once);
     }
 
-    // -----------------------------
-    // DeleteAsync
-    // -----------------------------
+    
     [Fact]
     public async Task DeleteAsync_WhenExists_DeletesMidia()
     {
@@ -141,9 +133,6 @@ public class MidiaServiceTests
         await Assert.ThrowsAsync<KeyNotFoundException>(() => _service.DeleteAsync(1));
     }
 
-    // -----------------------------
-    // UploadAndCreateMidiaAsync
-    // -----------------------------
     [Fact]
     public async Task UploadAndCreateMidiaAsync_WhenFileIsValidImage_CreatesMidia()
     {
@@ -176,14 +165,14 @@ public class MidiaServiceTests
     [Fact]
     public async Task UpdateAsync_WhenNomeAndDescricaoAreNull_KeepsOriginalValues()
     {
-        // Arrange
+        
         var midia = new Midia { Id = 1, Nome = "Original", Descricao = "Descricao original" };
         _midiaRepoMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(midia);
 
-        // Act
+        
         var result = await _service.UpdateAsync(1, null, null, null);
 
-        // Assert
+        
         Assert.Equal("Original", result.Nome);
         Assert.Equal("Descricao original", result.Descricao);
         _midiaRepoMock.Verify(r => r.UpdateAsync(midia), Times.Once);
@@ -192,18 +181,18 @@ public class MidiaServiceTests
     [Fact]
     public async Task DeleteAsync_WhenFileDoesNotExist_StillDeletesMidia()
     {
-        // Arrange
+        
         var midia = new Midia { Id = 1, Nome = "Teste", UrlMidia = "Uploads/Imagens/inexistente.jpg" };
         _midiaRepoMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(midia);
 
-        // Forçar para garantir que arquivo não existe
+        
         if (File.Exists(midia.UrlMidia))
             File.Delete(midia.UrlMidia);
 
-        // Act
+        
         await _service.DeleteAsync(1);
 
-        // Assert
+        
         _midiaRepoMock.Verify(r => r.DeleteAsync(midia), Times.Once);
     }
 
