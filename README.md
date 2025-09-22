@@ -72,21 +72,3 @@ npm start
 ```
 [Admin Web] --- Axios ---> [API .NET + PostgreSQL] --- Axios ---> [Player Web]
 ```
-
----
-
-### Fases Concluídas
-- [x] CRUD de mídias (Fase 1)  
-- [x] Playlists e associação com mídias (Fase 2)  
-- [x] Player preview básico (Fase 3)  
-- [x] JWT e FadeIn implementados (Fase 4)  
-
----
-
-### O Que Faria Com Mais Tempo
-- Implementar **WebSocket** ou polling para atualização em tempo real das playlists  
-- Melhorar a **responsividade avançada** do Admin e Player  
-- Criar **testes unitários e automatizados** no backend e frontend  
-- Melhorar **UI/UX** das aplicações (fluxo, cores, botões, feedback visual)  
-- Automatizar deploy com **Docker + CI/CD**  
-
