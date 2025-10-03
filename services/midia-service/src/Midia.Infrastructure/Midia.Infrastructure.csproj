@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+  <PackageReference Include="AutoMapper" Version="15.0.1" />
+  <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="4.0.3.4" />
+  <PackageReference Include="AWSSDK.S3" Version="4.0.7.4" />
+  
+  <!-- EF Core 8 -->
+  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.11" />
+  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11" />
+  
+  <!-- PostgreSQL provider -->
+  <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.6" />
+  
+  <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+  <PackageReference Include="Microsoft.Extensions.Features" Version="8.0.11" />
+  <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.3.0" />
+</ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Midia.Domain\Midia.Domain.csproj" />
+    <ProjectReference Include="..\Midia.Application\Midia.Application.csproj" />
+  </ItemGroup>
+
+</Project>

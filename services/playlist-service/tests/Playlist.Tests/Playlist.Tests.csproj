@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Garante que os testes aparecem no Test Explorer -->
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Framework de testes -->
+    <PackageReference Include="xunit" Version="2.9.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.9.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+
+    <!-- Assertions mais legíveis -->
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+
+    <!-- Mocking -->
+    <PackageReference Include="Moq" Version="4.20.70" />
+
+    <!-- Necessário para rodar os testes em paralelo corretamente -->
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Referencia todas as camadas do sistema -->
+    <ProjectReference Include="..\..\src\Playlist.Api\Playlist.Api.csproj" />
+    <ProjectReference Include="..\..\src\Playlist.Application\Playlist.Application.csproj" />
+    <ProjectReference Include="..\..\src\Playlist.Domain\Playlist.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Playlist.Infrastructure\Playlist.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
